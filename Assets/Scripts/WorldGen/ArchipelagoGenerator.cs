@@ -80,12 +80,24 @@ public class ArchipelagoGenerator : MonoBehaviour
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            if (Application.isPlaying)
-                Destroy(transform.GetChild(i).gameObject);
-            else
-                DestroyImmediate(transform.GetChild(i).gameObject);
+            var child = transform.GetChild(i).gameObject;
+
+            #if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                // Delay destruction to avoid OnValidate issues
+                UnityEditor.EditorApplication.delayCall += () =>
+                {
+                    if (child != null)
+                        DestroyImmediate(child);
+                };
+                continue;
+            }
+            #endif
+            Destroy(child);
         }
     }
+
 
     float[,] ExtractChunk(float[,] map, int cx, int cy)
     {
