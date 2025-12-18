@@ -71,6 +71,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 1c0f315e607f4b1469fe5c3e92ded81d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ShoreTex:
+        m_Texture: {fileID: 2800000, guid: 84ac5154f7178ba4cbde33c441e1dabd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BlendStrength: 2
@@ -87,12 +91,16 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SandHeight: 1.5
+    - _ShoreTiling: 0.08
+    - _ShoreWidth: 0.8
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
+    - _WaterHeight: 1.2
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _ShoreColor: {r: 0.49803925, g: 0.49803925, b: 0.49803925, a: 1}
   m_BuildTextureStacks: []
