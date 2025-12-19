@@ -1,4 +1,5 @@
 using UnityEngine;
+using Mirror;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
+        if (!NetworkClient.isConnected) return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -24,14 +27,12 @@ public class PauseMenu : MonoBehaviour
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
         isPaused = false;
     }
 
     void Pause()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f;
         isPaused = true;
     }
 
