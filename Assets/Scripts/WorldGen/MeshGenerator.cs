@@ -45,6 +45,8 @@ public static class MeshGenerator
         mesh.triangles = triangles;
         mesh.uv = uv;
         mesh.RecalculateNormals();
+        mesh.RecalculateTangents();
+        mesh.RecalculateBounds();
 
         return mesh;
     }

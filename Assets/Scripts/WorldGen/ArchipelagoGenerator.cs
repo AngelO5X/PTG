@@ -68,10 +68,15 @@ public class ArchipelagoGenerator : MonoBehaviour
 
                 MeshFilter mf = chunk.AddComponent<MeshFilter>();
                 MeshRenderer mr = chunk.AddComponent<MeshRenderer>();
+                MeshCollider mc = chunk.AddComponent<MeshCollider>();
 
                 mr.sharedMaterial = terrainMaterial;
 
-                mf.sharedMesh = MeshGenerator.GenerateTerrainMesh(chunkMap, heightMultiplier);
+                Mesh mesh = MeshGenerator.GenerateTerrainMesh(chunkMap, heightMultiplier);
+
+                mf.sharedMesh = mesh;
+                mc.sharedMesh = mesh;
+                mc.convex = false;
             }
         }
     }
@@ -101,14 +106,23 @@ public class ArchipelagoGenerator : MonoBehaviour
 
     float[,] ExtractChunk(float[,] map, int cx, int cy)
     {
-        float[,] chunk = new float[chunkSize, chunkSize];
-        int startX = cx * chunkSize;
-        int startY = cy * chunkSize;
+        int size = chunkSize + 2;
+        float[,] chunk = new float[size, size];
 
-        for (int y = 0; y < chunkSize; y++)
-            for (int x = 0; x < chunkSize; x++)
-                chunk[x, y] = map[startX + x, startY + y];
+        int startX = cx * chunkSize - 1;
+        int startY = cy * chunkSize - 1;
+
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                int mx = Mathf.Clamp(startX + x, 0, map.GetLength(0) - 1);
+                int my = Mathf.Clamp(startY + y, 0, map.GetLength(1) - 1);
+                chunk[x, y] = map[mx, my];
+            }
+        }
 
         return chunk;
     }
+
 }
