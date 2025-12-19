@@ -1,17 +1,15 @@
 using UnityEngine;
+using Mirror;
 
-[ExecuteAlways]   // ← TO JEST KLUCZ
-public class ArchipelagoGenerator : MonoBehaviour
+public class ArchipelagoGenerator : NetworkBehaviour
 {
     [Header("World")]
     public int chunkSize = 64;
     public int chunks = 4;
     public Material terrainMaterial;
 
-
     [Header("Noise")]
     public float scale = 40f;
-    public int seed = 12345;
     public int octaves = 4;
     public float persistence = 0.5f;
     public float lacunarity = 2f;
@@ -19,33 +17,28 @@ public class ArchipelagoGenerator : MonoBehaviour
     [Header("Height")]
     public float heightMultiplier = 10f;
 
-    [Header("Auto")]
-    public bool autoUpdate = true;
+    [SyncVar]
+    public int seed;
 
-    void OnEnable()
+    public override void OnStartServer()
     {
-        Generate();
+        seed = Random.Range(0, int.MaxValue);
+        Generate(seed);
     }
 
-    void OnValidate()
+    public override void OnStartClient()
     {
-        if (!autoUpdate) return;
-        Generate();
+        Generate(seed);
     }
 
-    void Start()
-    {
-        Generate(); // Play Mode
-    }
-
-    public void Generate()
+    void Generate(int usedSeed)
     {
         Clear();
 
         int worldSize = chunkSize * chunks;
 
         float[,] noise = NoiseGenerator.GenerateNoise(
-            worldSize, scale, seed, octaves, persistence, lacunarity
+            worldSize, scale, usedSeed, octaves, persistence, lacunarity
         );
 
         float[,] falloff = FalloffGenerator.GenerateFalloffMap(worldSize);
@@ -76,7 +69,6 @@ public class ArchipelagoGenerator : MonoBehaviour
 
                 mf.sharedMesh = mesh;
                 mc.sharedMesh = mesh;
-                mc.convex = false;
             }
         }
     }
@@ -85,24 +77,9 @@ public class ArchipelagoGenerator : MonoBehaviour
     {
         for (int i = transform.childCount - 1; i >= 0; i--)
         {
-            var child = transform.GetChild(i).gameObject;
-
-            #if UNITY_EDITOR
-            if (!Application.isPlaying)
-            {
-                // Delay destruction to avoid OnValidate issues
-                UnityEditor.EditorApplication.delayCall += () =>
-                {
-                    if (child != null)
-                        DestroyImmediate(child);
-                };
-                continue;
-            }
-            #endif
-            Destroy(child);
+            Destroy(transform.GetChild(i).gameObject);
         }
     }
-
 
     float[,] ExtractChunk(float[,] map, int cx, int cy)
     {
@@ -124,5 +101,4 @@ public class ArchipelagoGenerator : MonoBehaviour
 
         return chunk;
     }
-
 }
