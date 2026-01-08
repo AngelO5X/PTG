@@ -57,7 +57,7 @@ See the [`LICENSE`](./LICENSE) file for details.
 ## 🤝 Credits
 
 - **Developed by:** CDProjectBad
-- **Engine:** Unreal Engine 5
+- **Engine:** Unity
 
 ---
 
