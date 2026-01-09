@@ -9,7 +9,7 @@ A stylized 3D survival game built with **Unreal Engine 5**, featuring immersive 
 - **Type:** 3D Game  
 - **Genre:** Survival  
 - **Perspective:** First-Person (FPP)  
-- **Engine:** Unreal Engine 5  
+- **Engine:** Unity
 - **Art Style:** Stylized
 
 ---
@@ -57,7 +57,7 @@ See the [`LICENSE`](./LICENSE) file for details.
 ## 🤝 Credits
 
 - **Developed by:** CDProjectBad
-- **Engine:** Unreal Engine 5
+- **Engine:** Unity
 
 ---
 
