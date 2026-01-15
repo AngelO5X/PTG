@@ -63,7 +63,7 @@ public class ArchipelagoGenerator : NetworkBehaviour
                 MeshRenderer mr = chunk.AddComponent<MeshRenderer>();
                 MeshCollider mc = chunk.AddComponent<MeshCollider>();
 
-                mr.sharedMaterial = terrainMaterial;
+                mr.material = terrainMaterial;
 
                 Mesh mesh = MeshGenerator.GenerateTerrainMesh(chunkMap, heightMultiplier);
 
