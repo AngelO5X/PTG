@@ -37,15 +37,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _SampleTexture2D_07c12d99160d451e9c589b969bb9184d_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 80d6d2d5125a9fa43999ca6f99876b08, type: 3}
+        m_Texture: {fileID: 2800000, guid: c32b2670b3c5799459b88869294e0e57, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_14cb571e6bda4c04845d7a4353d65814_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: a7b05dec520c8cf4c8e08dfef1f84db4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 80d6d2d5125a9fa43999ca6f99876b08, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SampleTexture2D_638c08eb44ef41ffb5779e88dd58fc8e_Texture_1_Texture2D:
-        m_Texture: {fileID: 2800000, guid: 20aa0f234461fbc46ae6fe91f504e2f6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 85ed2b41abc7c82499e10ac4feaa0590, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -63,16 +63,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _Dirt_Min_Height: 1.1
-    - _Grass_Height: 2.2
+    - _Grass_Height: 1.6
     - _Grass_Smoothness: 0.1
-    - _NoiseStrength: 0.4
+    - _NoiseStrength: 0.3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Sand_Height: 1
+    - _Sand_Height: 1.5
     - _Sand_Smoothness: 0.8
-    - _SlopeBlur: 0.2
-    - _SlopeLimit: 0.8
+    - _SlopeBlur: 0.4
+    - _SlopeLimit: 0.6
     m_Colors:
-    - _NoiseTiling: {r: 1, g: 1, b: 0, a: 0}
-    - _TerrainTiling: {r: 10, g: 10, b: 0, a: 0}
+    - _NoiseTiling: {r: 4, g: 4, b: 0, a: 0}
+    - _TerrainTiling: {r: 200, g: 200, b: 0, a: 0}
   m_BuildTextureStacks: []
