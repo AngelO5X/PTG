@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b436bacc8da17944d825a1d7e8acb3de
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Subgraphs/Dither Fade.asset
+  uploadId: 840714

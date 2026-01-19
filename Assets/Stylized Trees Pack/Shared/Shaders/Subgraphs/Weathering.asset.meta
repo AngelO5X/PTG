@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e67ac1dcb9625ee4d89e62cbe015da35
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Subgraphs/Weathering.asset
+  uploadId: 840714

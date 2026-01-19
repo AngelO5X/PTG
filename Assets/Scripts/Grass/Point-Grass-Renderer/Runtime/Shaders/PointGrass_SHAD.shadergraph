@@ -2435,7 +2435,7 @@
     "m_AlphaClip": true,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
-    "m_SupportsLODCrossFade": false,
+    "m_SupportsLODCrossFade": true,
     "m_CustomEditorGUI": "PointGrassShaderEditorGUI",
     "m_SupportVFX": false
 }
