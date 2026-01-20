@@ -359,7 +359,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2fbb64d87c9369b43901335772811834, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fcbe013287b676d478d1e4bfa686d01c, type: 2}
     - target: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
@@ -413,8 +413,38 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fbb64d87c9369b43901335772811834, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3267470865671923085}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7444794303662630621}
   m_SourcePrefab: {fileID: 100100000, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+--- !u!1 &3920891608072329769 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+  m_PrefabInstance: {fileID: 4226812921700362104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7444794303662630621
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3920891608072329769}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3908632470293838282, guid: 2fbb64d87c9369b43901335772811834, type: 3}
 --- !u!4 &4405116956450373779 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2fbb64d87c9369b43901335772811834, type: 3}

@@ -297,7 +297,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 813ba5eeaa4fd934fab352dd577b51ad, type: 2}
     - target: {fileID: 919132149155446097, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
@@ -341,13 +341,43 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7463704027495095879}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7600083193147874404}
   m_SourcePrefab: {fileID: 100100000, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
 --- !u!4 &7037001915971732875 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
   m_PrefabInstance: {fileID: 7359667426599920224}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7702179394265898801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
+  m_PrefabInstance: {fileID: 7359667426599920224}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &7600083193147874404
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702179394265898801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 1043076281180467971, guid: fb90632ccf4dea24e8ffd33535946b18, type: 3}
 --- !u!1001 &8119946453496188413
 PrefabInstance:
   m_ObjectHideFlags: 0
