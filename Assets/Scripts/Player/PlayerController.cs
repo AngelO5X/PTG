@@ -1,8 +1,8 @@
+using Mirror;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
-    // --- SETTINGS ---
     [Header("Movement Settings")]
     public float walkSpeed = 6f;
     public float sprintSpeed = 10f;
@@ -11,42 +11,43 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Settings")]
     public float jumpHeight = 1.5f;
     public float gravity = -20f;
-    public float jumpBufferTime = 0.2f;
-    public float coyoteTime = 0.2f;
 
     [Header("Camera Settings")]
     public Transform cameraTransform;
     public float mouseSensitivity = 2f;
     public float maxRotationPerFrame = 10f;
 
-    // --- INTERNAL STATE ---
     private CharacterController controller;
     private Vector3 velocity;
-    private float xRotation = 0f;
-
-    private float jumpBufferCounter;
-    private float coyoteTimeCounter;
+    private float xRotation;
 
     private Vector2 currentInputVector;
     private Vector2 smoothInputVelocity;
 
-    // --- INITIALIZATION ---
     void Start()
     {
         controller = GetComponent<CharacterController>();
+
+        if (!isLocalPlayer)
+        {
+            cameraTransform.gameObject.SetActive(false);
+            return;
+        }
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    // --- MAIN LOOP ---
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         HandleCamera();
         HandleMovement();
-        HandleGravityAndJump();
+        HandleGravity();
     }
 
-    // --- CAMERA LOGIC ---
+    // ================= CAMERA =================
     void HandleCamera()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -62,54 +63,44 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
     }
 
-    // --- MOVEMENT LOGIC ---
+    // ================= MOVEMENT =================
     void HandleMovement()
     {
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
 
         Vector2 targetInput = new Vector2(x, z).normalized;
-        currentInputVector = Vector2.SmoothDamp(currentInputVector, targetInput, ref smoothInputVelocity, 1f / acceleration);
+        currentInputVector = Vector2.SmoothDamp(
+            currentInputVector,
+            targetInput,
+            ref smoothInputVelocity,
+            1f / acceleration
+        );
 
-        float currentSpeed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
+        float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
 
-        Vector3 move = transform.right * currentInputVector.x + transform.forward * currentInputVector.y;
-        controller.Move(move * currentSpeed * Time.deltaTime);
+        CmdMove(currentInputVector, speed);
     }
 
-    // --- PHYSICS & JUMP LOGIC ---
-    void HandleGravityAndJump()
+    [Command]
+    void CmdMove(Vector2 input, float speed)
     {
-        // Coyote Time
-        if (controller.isGrounded)
-        {
-            coyoteTimeCounter = coyoteTime;
-            if (velocity.y < 0) velocity.y = -2f;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
+        Vector3 move =
+            transform.right * input.x +
+            transform.forward * input.y;
 
-        // Jump Buffer
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpBufferCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferCounter -= Time.deltaTime;
-        }
+        controller.Move(move * speed * Time.deltaTime);
+    }
 
-        // Jump Execution
-        if (jumpBufferCounter > 0f && coyoteTimeCounter > 0f)
-        {
+    // ================= GRAVITY =================
+    void HandleGravity()
+    {
+        if (controller.isGrounded && velocity.y < 0)
+            velocity.y = -2f;
+
+        if (Input.GetKeyDown(KeyCode.Space) && controller.isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            jumpBufferCounter = 0f;
-            coyoteTimeCounter = 0f;
-        }
 
-        // Gravity
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
