@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WaterTrigger
+  - HUD
   layers:
   - Default
   - TransparentFX
