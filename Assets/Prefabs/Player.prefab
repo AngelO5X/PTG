@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3666145161120690753}
   - component: {fileID: 3377871856516758710}
   - component: {fileID: 3793429902280396730}
+  - component: {fileID: 6668985407402479840}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -150,13 +151,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6783f814730aa6c4fb1fd39b9d4c60a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMethod: 0
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   walkSpeed: 5
   sprintSpeed: 8
   acceleration: 10
   jumpHeight: 1.5
   gravity: -9.81
-  jumpBufferTime: 0.2
-  coyoteTime: 0.2
   cameraTransform: {fileID: 7330153968742193534}
   mouseSensitivity: 5
   maxRotationPerFrame: 10
@@ -209,6 +212,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderDistance: 80
   checkInterval: 0.5
+--- !u!114 &6668985407402479840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 797746185573007275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff3ba0becae47b8b9381191598957c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMethod: 0
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0.05
+  target: {fileID: 7843284865676967030}
+  updateMethod: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  onlySyncOnChange: 1
+  compressRotation: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  coordinateSpace: 0
+  timelineOffset: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChangeCorrectionMultiplier: 2
+  rotationSensitivity: 0.01
+  positionPrecision: 0.01
+  scalePrecision: 0.01
 --- !u!1 &5571739120122120684
 GameObject:
   m_ObjectHideFlags: 0
