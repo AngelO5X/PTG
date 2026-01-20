@@ -7,7 +7,7 @@ public class PlayerHealth : NetworkBehaviour
 {
     private GameObject hudObject;
     private Slider healthBar;
-    private TextMeshProUGUI hpValueText; // Referencja tylko do cyferek
+    private TextMeshProUGUI hpValueText;
 
     public float maxHealth = 100f;
     public float currentHealth;
@@ -31,42 +31,27 @@ public class PlayerHealth : NetworkBehaviour
         if (hudObject != null)
         {
             hudObject.SetActive(true);
-            healthBar = hudObject.GetComponentInChildren<Slider>();
             
-            // SZUKANIE KONKRETNEGO OBIEKTU HP_Value
-            // Szukamy w dzieciach HUD obiektu, który nazywa się dokładnie "HP_Value"
-            Transform textTransform = hudObject.transform.Find("HP_Value");
-            
-            // Jeśli HP_Value jest głębiej (np. wewnątrz HealthBar), używamy tej metody:
-            if (textTransform == null)
-            {
-                foreach (TextMeshProUGUI tmpro in hudObject.GetComponentsInChildren<TextMeshProUGUI>(true))
-                {
-                    if (tmpro.gameObject.name == "HP_Value")
-                    {
-                        hpValueText = tmpro;
-                        break;
-                    }
-                }
+            // Szukamy Slidera o nazwie HealthBar
+            Slider[] sliders = hudObject.GetComponentsInChildren<Slider>(true);
+            foreach(Slider s in sliders) {
+                if(s.gameObject.name == "HealthBar") healthBar = s;
             }
-            else
+            
+            foreach (TextMeshProUGUI tmpro in hudObject.GetComponentsInChildren<TextMeshProUGUI>(true))
             {
-                hpValueText = textTransform.GetComponent<TextMeshProUGUI>();
+                if (tmpro.gameObject.name == "HP_Value")
+                {
+                    hpValueText = tmpro;
+                    break;
+                }
             }
             
             UpdateHealthUI();
         }
     }
 
-    void Update()
-    {
-        if (!isLocalPlayer) return;
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(5);
-        }
-    }
+    
 
     public void TakeDamage(float damage)
     {
@@ -77,17 +62,10 @@ public class PlayerHealth : NetworkBehaviour
 
     void UpdateHealthUI()
     {
-        if (healthBar != null)
-        {
-            healthBar.value = currentHealth;
-        }
-
-        // Teraz aktualizujemy tylko HP_Value, napis HP zostanie nienaruszony
+        if (healthBar != null) healthBar.value = currentHealth;
         if (hpValueText != null)
         {
-            hpValueText.text = currentHealth.ToString() + "/" + maxHealth.ToString();
+            hpValueText.text = Mathf.CeilToInt(currentHealth).ToString() + "/" + maxHealth.ToString();
         }
     }
 }
-
-
