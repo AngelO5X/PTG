@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: a6eddc4e871340fe9df89c1c50684da7
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Editor/GrowthVector2Drawer.cs
+  uploadId: 840714

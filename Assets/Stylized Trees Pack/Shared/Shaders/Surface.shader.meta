@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: c1ed8833df7f5b44c97bad033090907c
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Surface.shader
+  uploadId: 840714

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: bb257b300d8d9d748bf8d0eeb8190b52
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - baseMesh: {instanceID: 0}
+  - terrain: {instanceID: 0}
+  - grassBladeMesh: {instanceID: 0}
+  - material: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

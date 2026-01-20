@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 5c5ed66209f355540ac5dc5ade5cff2e
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Editor/GradientGUIDrawer.cs
+  uploadId: 840714

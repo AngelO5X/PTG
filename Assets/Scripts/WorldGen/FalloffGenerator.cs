@@ -10,8 +10,9 @@ public static class FalloffGenerator
         {
             for (int x = 0; x < size; x++)
             {
-                float fx = x / (float)size * 2 - 1;
-                float fy = y / (float)size * 2 - 1;
+                // POPRAWKA: Dzielimy przez (size - 1), aby zakres by³ idealnie symetryczny (-1 do 1)
+                float fx = x / (float)(size - 1) * 2 - 1;
+                float fy = y / (float)(size - 1) * 2 - 1;
 
                 float v = Mathf.Max(Mathf.Abs(fx), Mathf.Abs(fy));
                 map[x, y] = Evaluate(v);

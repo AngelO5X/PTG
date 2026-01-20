@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 64ffe4230c9b4fc8af028dcb4bce1d72
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 245037
+  packageName: Stylized Foliage Bush & Clouds Creator
+  packageVersion: 2.0.0
+  assetPath: Assets/Growth/Shared/Shaders/Subgraphs/Sample Gradient.asset
+  uploadId: 840714
