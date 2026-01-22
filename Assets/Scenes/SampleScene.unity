@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.63924, g: 0.7411738, b: 0.85789627, a: 1}
+  m_IndirectSpecularColor: {r: 0.6698251, g: 0.7182108, b: 0.7586082, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -603,78 +603,126 @@ MonoBehaviour:
     maxCount: 100
     minScale: 1
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 2
     prefab: {fileID: 3920891608072329769, guid: c014efb51253cbb49a53f238342a3470, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 1
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 3
     prefab: {fileID: 7377216707398034856, guid: 4c1c5346387ebca428b9d0584a9a5e0f, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 1
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Bush 1
     prefab: {fileID: 217675983518441196, guid: 4495aa307b7650541962001dba801044, type: 3}
     minCount: 100
     maxCount: 300
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Bush 2
     prefab: {fileID: 1278505166359465597, guid: 9985746aaeda93b49ad2d750324c4a8f, type: 3}
     minCount: 100
     maxCount: 300
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Bush 3
     prefab: {fileID: 6352004321529153254, guid: c873d76757560ff42b9c6271f89b009b, type: 3}
     minCount: 100
     maxCount: 300
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Bush 4
     prefab: {fileID: 5785545068307853469, guid: d61592837b08b99469e2942374e8700c, type: 3}
     minCount: 100
     maxCount: 300
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Bush 5
     prefab: {fileID: 4764696934271266316, guid: ff7eeb64c4cc695489b00a4f31adde77, type: 3}
     minCount: 100
     maxCount: 300
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 4
     prefab: {fileID: 7702179394265898801, guid: ab82731a74f409949933cff3393f52ec, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 5
     prefab: {fileID: 7339899100086995981, guid: 416c9df81841f924f9eaa10e93616b15, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 6
     prefab: {fileID: 6467501482866677625, guid: 185a51d9854372944972dd29af446ca6, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 7
     prefab: {fileID: 1554904066427721143, guid: 4cfd9fb0535445b42b87a1641b4d228e, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
   - name: Tree 8
     prefab: {fileID: 5028941712208884059, guid: 0ff0b2c7a1fd9184fbd0079826ac47f5, type: 3}
     minCount: 50
     maxCount: 100
     minScale: 0.5
     maxScale: 1.5
+    heightOffset: -0.1
+  - name: Rock 1
+    prefab: {fileID: 4439196122037935993, guid: 5fc6222d83b2ea348908521dd276bd85, type: 3}
+    minCount: 500
+    maxCount: 1000
+    minScale: 1
+    maxScale: 2
+    heightOffset: -0.1
+  - name: Rock 2
+    prefab: {fileID: 7460174787046934735, guid: 7148d7dacaad8254faa18a4b659847aa, type: 3}
+    minCount: 400
+    maxCount: 600
+    minScale: 1
+    maxScale: 2
+    heightOffset: -0.1
+  - name: Rock 3
+    prefab: {fileID: 875764046000358053, guid: 7e75d8db504db3c43a5e33526677baab, type: 3}
+    minCount: 200
+    maxCount: 400
+    minScale: 1
+    maxScale: 1
+    heightOffset: -0.5
+  - name: Rock 4
+    prefab: {fileID: 4120881909060374235, guid: fed3f1f2e6ebcd646ab693553fba6aa5, type: 3}
+    minCount: 100
+    maxCount: 200
+    minScale: 0.5
+    maxScale: 1
+    heightOffset: -1
+  - name: Rock 5
+    prefab: {fileID: 3840431092305188236, guid: 639203ad2b9008848a58dc1b1095530c, type: 3}
+    minCount: 50
+    maxCount: 100
+    minScale: 0.5
+    maxScale: 1
+    heightOffset: -1
 --- !u!4 &322102233
 Transform:
   m_ObjectHideFlags: 0
@@ -690,6 +738,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &373352924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 541.55066
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 557.3328
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 524436907120648755, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621188704053753015, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
+      propertyPath: m_Name
+      value: Plane
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 325c2d2003d0ece4fb89b5feedd0ff16, type: 3}
 --- !u!1 &470032127
 GameObject:
   m_ObjectHideFlags: 0
@@ -8826,7 +8931,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 220642078818138209, guid: 2c549ed09bb4c9d48b47e68bf92c615e, type: 3}
       propertyPath: currentTime
-      value: 12.1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 220642078818138209, guid: 2c549ed09bb4c9d48b47e68bf92c615e, type: 3}
+      propertyPath: dayDuration
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 1287158924845009347, guid: 2c549ed09bb4c9d48b47e68bf92c615e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8896,3 +9005,4 @@ SceneRoots:
   - {fileID: 322102233}
   - {fileID: 714981399}
   - {fileID: 828450709}
+  - {fileID: 373352924}

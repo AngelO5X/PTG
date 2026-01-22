@@ -30,6 +30,12 @@ public class VegetationGenerator : MonoBehaviour
         [Header("Wygl¹d")]
         [Range(0.1f, 5f)] public float minScale = 0.8f;
         [Range(0.1f, 5f)] public float maxScale = 1.2f;
+
+        // --- NOWE POLE ---
+        [Header("Pozycjonowanie")]
+        [Tooltip("Przesuniêcie w pionie. Ujemna wartoœæ wbije obiekt w ziemiê (np. -0.2).")]
+        public float heightOffset = -0.1f;
+        // -----------------
     }
 
     [Header("Lista Roœlin")]
@@ -79,6 +85,7 @@ public class VegetationGenerator : MonoBehaviour
                 float height = hit.point.y;
                 float angle = Vector3.Angle(hit.normal, Vector3.up);
 
+                // Sprawdzenie wysokoœci i k¹ta nachylenia
                 if (height > 1.23f && angle < 45f)
                 {
                     CreateObject(veg, hit.point);
@@ -90,7 +97,12 @@ public class VegetationGenerator : MonoBehaviour
 
     void CreateObject(VegetationType veg, Vector3 position)
     {
-        GameObject newObj = Instantiate(veg.prefab, position, Quaternion.identity, container);
+        // --- ZMIANA: Dodanie Offsetu ---
+        // Dodajemy wartoœæ heightOffset do osi Y. 
+        // Jeœli wpiszesz w inspektorze -0.5, obiekt wygeneruje siê pó³ metra ni¿ej.
+        Vector3 finalPosition = position + new Vector3(0, veg.heightOffset, 0);
+
+        GameObject newObj = Instantiate(veg.prefab, finalPosition, Quaternion.identity, container);
 
         newObj.transform.rotation = Quaternion.Euler(0, Random.Range(0, 360f), 0);
 
