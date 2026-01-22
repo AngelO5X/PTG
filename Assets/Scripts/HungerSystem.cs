@@ -5,96 +5,69 @@ using Mirror;
 
 public class HungerSystem : NetworkBehaviour
 {
-    private GameObject hudObject;
     private Slider hungerSlider;
     private TextMeshProUGUI hungerValueText;
+    private PlayerHealth playerHealth;
 
     [Header("Settings")]
     public float maxHunger = 100f;
     public float currentHunger;
-    public float drainInterval = 5f; // Co ile sekund ma spadac glod
+    public float drainInterval = 5f;   // Co ile spada glod (np. 5s)
+    public float damageInterval = 10f; // Co ile zabiera HP przy 0 (np. 10s)
+    public float starveDamage = 1f;    // Ile HP zabiera
 
     void Start()
     {
-        // Wykonaj tylko dla gracza lokalnego
         if (!isLocalPlayer) return;
 
         currentHunger = maxHunger;
+        playerHealth = GetComponent<PlayerHealth>();
 
-        // Szukamy HUD (nawet jesli jest wylaczony)
+        // Szukanie UI (zakładając Tag HUD)
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
-        foreach (GameObject obj in allObjects)
+        GameObject hud = null;
+        foreach (GameObject obj in allObjects) { if (obj.CompareTag("HUD")) { hud = obj; break; } }
+
+        if (hud != null)
         {
-            if (obj.CompareTag("HUD"))
-            {
-                hudObject = obj;
-                break;
-            }
+            foreach (Slider s in hud.GetComponentsInChildren<Slider>(true))
+                if (s.gameObject.name == "Hunger") hungerSlider = s;
+
+            foreach (TextMeshProUGUI t in hud.GetComponentsInChildren<TextMeshProUGUI>(true))
+                if (t.gameObject.name == "Hunger_Value") hungerValueText = t;
         }
 
-        if (hudObject != null)
-        {
-            // Szukamy Slidera wewnatrz obiektu Hunger
-            // Zakladamy, ze skrypt jest na Playerze, a Hunger jest dzieckiem HUD
-            Slider[] allSliders = hudObject.GetComponentsInChildren<Slider>(true);
-            foreach (Slider s in allSliders)
-            {
-                if (s.gameObject.name == "Hunger")
-                {
-                    hungerSlider = s;
-                    break;
-                }
-            }
-
-            // Szukamy tekstu Hunger_Value (na screenie widac go w Hunger -> Fill Area)
-            TextMeshProUGUI[] allTexts = hudObject.GetComponentsInChildren<TextMeshProUGUI>(true);
-            foreach (TextMeshProUGUI t in allTexts)
-            {
-                if (t.gameObject.name == "Hunger_Value")
-                {
-                    hungerValueText = t;
-                    break;
-                }
-            }
-        }
-
-        // Uruchomienie odliczania (Metoda, czas do pierwszego wywolania, powtarzalnosc)
+        // Pierwszy zegar: Spadek glodu co 5s
         InvokeRepeating(nameof(DecreaseHunger), drainInterval, drainInterval);
+        
+        // Drugi zegar: Zadawanie obrazen co 10s
+        InvokeRepeating(nameof(StarveDamage), damageInterval, damageInterval);
 
-        UpdateHungerUI();
+        UpdateUI();
     }
 
     void DecreaseHunger()
     {
-        if (!isLocalPlayer) return;
-
         if (currentHunger > 0)
         {
             currentHunger -= 1f;
-            currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
-            UpdateHungerUI();
-        }
-        else
-        {
-            // Jesli glod spadnie do 0, mozesz zadawac obrazenia
-            if (GetComponent<PlayerHealth>() != null)
-            {
-                GetComponent<PlayerHealth>().TakeDamage(2f);
-            }
+            currentHunger = Mathf.Max(currentHunger, 0);
+            UpdateUI();
         }
     }
 
-    void UpdateHungerUI()
+    void StarveDamage()
     {
-        if (hungerSlider != null)
+        if (currentHunger <= 0 && playerHealth != null)
         {
-            hungerSlider.value = currentHunger;
+            playerHealth.TakeDamage(starveDamage);
+            Debug.Log("Głodujesz! Tracisz HP co " + damageInterval + " sekund.");
         }
+    }
 
-        if (hungerValueText != null)
-        {
-            // Formatowanie tekstu na 100 / 100
-            hungerValueText.text = Mathf.CeilToInt(currentHunger).ToString() + "/" + maxHunger.ToString();
-        }
+    void UpdateUI()
+    {
+        if (hungerSlider != null) hungerSlider.value = currentHunger;
+        if (hungerValueText != null) hungerValueText.text = Mathf.CeilToInt(currentHunger) + "/" + maxHunger;
     }
 }
