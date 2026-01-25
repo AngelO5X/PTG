@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.63924, g: 0.7411738, b: 0.85789627, a: 1}
+  m_IndirectSpecularColor: {r: 0.61024547, g: 0.76294214, b: 0.95205426, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1253,6 +1253,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
+    - target: {fileID: 1126421264683062082, guid: b684ceec982bd2e49a9dae2f6ed26859, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2054836664310259264, guid: b684ceec982bd2e49a9dae2f6ed26859, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2066,6 +2070,10 @@ PrefabInstance:
     - target: {fileID: 5586780841571194181, guid: 69cfd953d9c12364995d6c6313039394, type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586780841571194181, guid: 69cfd953d9c12364995d6c6313039394, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8244548613888578963, guid: 69cfd953d9c12364995d6c6313039394, type: 3}
       propertyPath: m_Pivot.x
@@ -8875,6 +8883,10 @@ PrefabInstance:
     - target: {fileID: 1841040576564121799, guid: 2c549ed09bb4c9d48b47e68bf92c615e, type: 3}
       propertyPath: m_Name
       value: Lighting
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841040576564121799, guid: 2c549ed09bb4c9d48b47e68bf92c615e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
