@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3030073500942624703, guid: 587892d3ead514d4d958e26702997e93, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3367302115685514899, guid: 587892d3ead514d4d958e26702997e93, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367302115685514899, guid: 587892d3ead514d4d958e26702997e93, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -110,9 +118,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3658646549642842818, guid: 3f3691a30dd38cb45b34a26124b9ef65, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6312417099063124583, guid: 3f3691a30dd38cb45b34a26124b9ef65, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6312417099063124583, guid: 3f3691a30dd38cb45b34a26124b9ef65, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -176,6 +192,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birch 002 Foliage 002
       objectReference: {fileID: 0}
+    - target: {fileID: 6773656056199409596, guid: 4ba814b0148265e41a450f2785ba2361, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 9114682072056157937, guid: 4ba814b0148265e41a450f2785ba2361, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -194,9 +218,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4405116956450373779}
     m_Modifications:
+    - target: {fileID: 36454407070892982, guid: ea3a09e1d034c4e488e1c3ca010e6657, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 713150876887808922, guid: ea3a09e1d034c4e488e1c3ca010e6657, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 004
+      objectReference: {fileID: 0}
+    - target: {fileID: 713150876887808922, guid: ea3a09e1d034c4e488e1c3ca010e6657, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8980298069165118278, guid: ea3a09e1d034c4e488e1c3ca010e6657, type: 3}
       propertyPath: m_LocalPosition.x
@@ -256,6 +288,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4405116956450373779}
     m_Modifications:
+    - target: {fileID: 1578879544510505685, guid: 15b55375318e5514ba894ee314a527ff, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4957034374856351391, guid: 15b55375318e5514ba894ee314a527ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.44701
@@ -299,6 +335,10 @@ PrefabInstance:
     - target: {fileID: 8898625884881991322, guid: 15b55375318e5514ba894ee314a527ff, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 006
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898625884881991322, guid: 15b55375318e5514ba894ee314a527ff, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -358,13 +398,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7646619185962561567, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2fbb64d87c9369b43901335772811834, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fcbe013287b676d478d1e4bfa686d01c, type: 2}
+    - target: {fileID: -2583977863513709527, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1958165051277673958, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
       propertyPath: m_Name
       value: Birch 002
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2fbb64d87c9369b43901335772811834, type: 3}
       propertyPath: m_IsActive
@@ -458,6 +514,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4405116956450373779}
     m_Modifications:
+    - target: {fileID: 958832431156794607, guid: de41d26d02d1b544db8b7db4ae2e72d8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7180490334390898444, guid: de41d26d02d1b544db8b7db4ae2e72d8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.159996
@@ -502,6 +562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birch 002 Foliage 008
       objectReference: {fileID: 0}
+    - target: {fileID: 8662524931699015762, guid: de41d26d02d1b544db8b7db4ae2e72d8, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -520,9 +584,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4405116956450373779}
     m_Modifications:
+    - target: {fileID: 3546921610965630444, guid: 7ad8c08dc43476447ae6736cab518d8e, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5242607398089011659, guid: 7ad8c08dc43476447ae6736cab518d8e, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 007
+      objectReference: {fileID: 0}
+    - target: {fileID: 5242607398089011659, guid: 7ad8c08dc43476447ae6736cab518d8e, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6712134985427876824, guid: 7ad8c08dc43476447ae6736cab518d8e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -585,6 +657,14 @@ PrefabInstance:
     - target: {fileID: 1025335442579482671, guid: dd64e0105ca68494d9243a747f37806d, type: 3}
       propertyPath: m_Name
       value: Birch 002 Foliage 001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025335442579482671, guid: dd64e0105ca68494d9243a747f37806d, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6405539814093932454, guid: dd64e0105ca68494d9243a747f37806d, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6607244084674133578, guid: dd64e0105ca68494d9243a747f37806d, type: 3}
       propertyPath: m_LocalPosition.x

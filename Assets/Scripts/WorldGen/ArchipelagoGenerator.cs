@@ -51,6 +51,10 @@ public class ArchipelagoGenerator : NetworkBehaviour
     [SyncVar]
     public int seed;
 
+    // --- NOWA ZMIENNA DO SYNCHRONIZACJI ZE ZWIERZÊTAMI ---
+    // AnimalAI bêdzie sprawdzaæ tê zmienn¹, zanim zacznie spawnowaæ
+    public bool IsMapReady { get; private set; } = false;
+
     private List<PointGrassRenderer> allGrassInstances = new List<PointGrassRenderer>();
     private List<PointGrassRenderer> grassQueue = new List<PointGrassRenderer>();
 
@@ -131,6 +135,9 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
     IEnumerator GenerationSequence(int usedSeed)
     {
+        // Ustawiamy flagê na false na pocz¹tku generowania
+        IsMapReady = false;
+
         Clear();
         grassQueue.Clear();
         allGrassInstances.Clear();
@@ -206,7 +213,11 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
         // --- FINALIZACJA I TELEPORTACJA ---
         TeleportPlayerToCenter();
+
         Debug.Log("Generowanie zakoñczone.");
+
+        // Wszystko gotowe, gracz na miejscu - dajemy znaæ innym skryptom (np. AnimalAI)
+        IsMapReady = true;
     }
 
     void SpawnGlobalVegetation()

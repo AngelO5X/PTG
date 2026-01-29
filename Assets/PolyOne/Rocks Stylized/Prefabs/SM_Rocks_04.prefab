@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2432962793492408293}
   - component: {fileID: 7185933597935361874}
   - component: {fileID: 9062827676743769313}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SM_Rocks_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604413879457636381}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7185933597935361874
 MeshFilter:

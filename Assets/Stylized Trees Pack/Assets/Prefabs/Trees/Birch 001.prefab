@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Birch 001 Foliage 004
       objectReference: {fileID: 0}
+    - target: {fileID: 6067654865331103790, guid: 18418c143d54aa4429093ba7348bb655, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7216216796586936323, guid: 18418c143d54aa4429093ba7348bb655, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70,9 +78,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6563530520853916556}
     m_Modifications:
+    - target: {fileID: 1291333756385050663, guid: ff2303c1b63c1c749a8c26fa568310e3, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2614726609810621260, guid: ff2303c1b63c1c749a8c26fa568310e3, type: 3}
       propertyPath: m_Name
       value: Birch 001 Foliage 001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2614726609810621260, guid: ff2303c1b63c1c749a8c26fa568310e3, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 9061527281749697419, guid: ff2303c1b63c1c749a8c26fa568310e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -172,9 +188,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2226112118085867998, guid: f3daaf21b6ebc3346bcd922ff157c79a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4095863248347699805, guid: f3daaf21b6ebc3346bcd922ff157c79a, type: 3}
       propertyPath: m_Name
       value: Birch 001 Foliage 003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095863248347699805, guid: f3daaf21b6ebc3346bcd922ff157c79a, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -194,6 +218,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8814077813081976708, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -241,6 +269,18 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
       propertyPath: m_Name
       value: Birch 001
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1052379413467847262, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3930499144231656049, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: e9d52af209784e04eae190a1d9aef9b2, type: 3}
       propertyPath: m_FadeMode
@@ -318,6 +358,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6563530520853916556}
     m_Modifications:
+    - target: {fileID: 3701264932770128020, guid: 8fb0590efaf942f4ab2f38af7204a706, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4814123247757116824, guid: 8fb0590efaf942f4ab2f38af7204a706, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.8829994
@@ -361,6 +405,10 @@ PrefabInstance:
     - target: {fileID: 6670133942401656329, guid: 8fb0590efaf942f4ab2f38af7204a706, type: 3}
       propertyPath: m_Name
       value: Birch 001 Foliage 002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670133942401656329, guid: 8fb0590efaf942f4ab2f38af7204a706, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

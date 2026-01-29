@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warped 003 Foliage 006
       objectReference: {fileID: 0}
+    - target: {fileID: 5650320890020459082, guid: 7e8d973102d1c834780b2a6194697a93, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5665603084483072975, guid: 7e8d973102d1c834780b2a6194697a93, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.87519073
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6437779709363330763, guid: 7e8d973102d1c834780b2a6194697a93, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -70,6 +78,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7968943598527141559}
     m_Modifications:
+    - target: {fileID: 4942321362175841492, guid: 2607da0d66eb72e4798c75c129722e82, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6857423663016218200, guid: 2607da0d66eb72e4798c75c129722e82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.2001972
@@ -114,6 +126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warped 003 Foliage 003
       objectReference: {fileID: 0}
+    - target: {fileID: 8601583944827039566, guid: 2607da0d66eb72e4798c75c129722e82, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -135,6 +151,10 @@ PrefabInstance:
     - target: {fileID: 3237209602384980083, guid: 4007f8f10c8883f45912118f939a2843, type: 3}
       propertyPath: m_Name
       value: Warped 003 Foliage 005
+      objectReference: {fileID: 0}
+    - target: {fileID: 3237209602384980083, guid: 4007f8f10c8883f45912118f939a2843, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4466454826997941959, guid: 4007f8f10c8883f45912118f939a2843, type: 3}
       propertyPath: m_LocalPosition.x
@@ -176,6 +196,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8334564313520462947, guid: 4007f8f10c8883f45912118f939a2843, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -197,6 +221,14 @@ PrefabInstance:
     - target: {fileID: 1443277774932105263, guid: ae8afaad67c0aa94fa730d85ac822930, type: 3}
       propertyPath: m_Name
       value: Warped 003 Foliage 001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443277774932105263, guid: ae8afaad67c0aa94fa730d85ac822930, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2620109087102439889, guid: ae8afaad67c0aa94fa730d85ac822930, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8295052026830153694, guid: ae8afaad67c0aa94fa730d85ac822930, type: 3}
       propertyPath: m_LocalPosition.x
@@ -300,6 +332,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warped 003 Foliage 002
       objectReference: {fileID: 0}
+    - target: {fileID: 688775900034145285, guid: 210ddedf32bb33e4d8c9fd2104c0f17a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934099728499370143, guid: 210ddedf32bb33e4d8c9fd2104c0f17a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -362,9 +402,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 813ba5eeaa4fd934fab352dd577b51ad, type: 2}
+    - target: {fileID: -6615244210097021142, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: -1886847419598595405, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 261725197481663824, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
       propertyPath: m_Name
       value: Warped 003
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4742473837712756890, guid: 46aaaaaf5598f494e926a2d77f271b44, type: 3}
       propertyPath: m_FadeMode
@@ -491,6 +547,14 @@ PrefabInstance:
     - target: {fileID: 8305115327148607624, guid: 399e5ed908842604fafcecdb09481eaa, type: 3}
       propertyPath: m_Name
       value: Warped 003 Foliage 004
+      objectReference: {fileID: 0}
+    - target: {fileID: 8305115327148607624, guid: 399e5ed908842604fafcecdb09481eaa, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8537689351547059572, guid: 399e5ed908842604fafcecdb09481eaa, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
