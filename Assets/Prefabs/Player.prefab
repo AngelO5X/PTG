@@ -163,11 +163,14 @@ MonoBehaviour:
   walkSpeed: 5
   sprintSpeed: 8
   acceleration: 10
-  jumpHeight: 1.5
+  jumpForce: 6
+  waterLevelY: 1.4
+  waterJumpForce: 2.5
+  waterGravityMultiplier: 0.01
   gravity: -9.81
+  groundStickForce: -2
   cameraTransform: {fileID: 7330153968742193534}
   mouseSensitivity: 5
-  maxRotationPerFrame: 10
 --- !u!114 &3666145161120690753
 MonoBehaviour:
   m_ObjectHideFlags: 0
