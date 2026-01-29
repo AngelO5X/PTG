@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WaterTrigger
   - HUD
+  - LoadingScreen
   layers:
   - Default
   - TransparentFX

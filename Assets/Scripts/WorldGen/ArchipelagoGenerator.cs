@@ -2,6 +2,7 @@ using UnityEngine;
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using MicahW.PointGrass;
 
 public class ArchipelagoGenerator : NetworkBehaviour
@@ -50,23 +51,24 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
     [SyncVar]
     public int seed;
-
-    // --- NOWA ZMIENNA DO SYNCHRONIZACJI ZE ZWIERZÊTAMI ---
-    // AnimalAI bêdzie sprawdzaæ tê zmienn¹, zanim zacznie spawnowaæ
     public bool IsMapReady { get; private set; } = false;
 
     private List<PointGrassRenderer> allGrassInstances = new List<PointGrassRenderer>();
     private List<PointGrassRenderer> grassQueue = new List<PointGrassRenderer>();
-
     private float[,] globalNoiseMap;
     private Transform playerTransform;
 
-    // --- INICJALIZACJA ---
+    // --- ZMIENNE DO OBS£UGI LOADING SCREENA ---
+    private GameObject activeLoadingScreen;
+    private Slider activeLoadingSlider;
 
     private void Start()
     {
         if (Application.isPlaying)
         {
+            // Próba znalezienia Loading Screena
+            FindLoadingScreen();
+
             if (!NetworkClient.active && !NetworkServer.active)
             {
                 StartCoroutine(GenerationSequence(seed != 0 ? seed : Random.Range(0, 10000)));
@@ -82,12 +84,24 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
     public override void OnStartClient()
     {
+        // Klient te¿ szuka paska
+        FindLoadingScreen();
+
         if (NetworkServer.active && NetworkClient.active) return;
         StartCoroutine(GenerationSequence(seed));
     }
 
-    // --- SYSTEM CULLINGU (OPTYMALIZACJA) ---
+    void FindLoadingScreen()
+    {
+        if (activeLoadingScreen == null)
+        {
+            activeLoadingScreen = GameObject.FindGameObjectWithTag("LoadingScreen");
+            if (activeLoadingScreen != null)
+                activeLoadingSlider = activeLoadingScreen.GetComponentInChildren<Slider>();
+        }
+    }
 
+    // --- SYSTEM CULLINGU (OPTYMALIZACJA) ---
     IEnumerator GrassCullingRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(grassCullingInterval);
@@ -132,23 +146,20 @@ public class ArchipelagoGenerator : NetworkBehaviour
     }
 
     // --- G£ÓWNA PÊTLA GENEROWANIA ---
-
     IEnumerator GenerationSequence(int usedSeed)
     {
-        // Ustawiamy flagê na false na pocz¹tku generowania
+        Debug.Log("Rozpoczynam generowanie œwiata...");
         IsMapReady = false;
+
+        // UWAGA: Nie blokujemy gracza tutaj! Niech spada z grawitacj¹ w tle.
+        // Loading Screen i tak zas³ania widok.
 
         Clear();
         grassQueue.Clear();
         allGrassInstances.Clear();
-        StartCoroutine(GrassCullingRoutine());
 
-        GameObject tempPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (tempPlayer != null)
-        {
-            CharacterController cc = tempPlayer.GetComponent<CharacterController>();
-            if (cc != null) cc.enabled = false;
-        }
+        // Ustawiamy pasek na start (10%)
+        if (activeLoadingSlider != null) activeLoadingSlider.value = 0.1f;
 
         int totalVerts = (chunkSize * chunks) + 1;
         int worldMetricSize = chunkSize * chunks;
@@ -167,14 +178,24 @@ public class ArchipelagoGenerator : NetworkBehaviour
         float stopwatch = Time.realtimeSinceStartup;
 
         // --- GENEROWANIE CHUNKÓW TERENU ---
+        int totalChunks = chunks * chunks;
+        int chunksProcessed = 0;
+
         for (int cy = 0; cy < chunks; cy++)
         {
             for (int cx = 0; cx < chunks; cx++)
             {
                 GenerateSingleChunkTerrain(noise, cx, cy, worldMetricSize);
+                chunksProcessed++;
 
                 if ((Time.realtimeSinceStartup - stopwatch) * 1000f > maxFrameTimeMs)
                 {
+                    // Aktualizacja paska (od 10% do 60%)
+                    if (activeLoadingSlider != null)
+                    {
+                        float progress = 0.1f + ((float)chunksProcessed / totalChunks) * 0.5f;
+                        activeLoadingSlider.value = progress;
+                    }
                     yield return null;
                     stopwatch = Time.realtimeSinceStartup;
                 }
@@ -185,12 +206,11 @@ public class ArchipelagoGenerator : NetworkBehaviour
         GenerateGlobalOcean();
         yield return null;
 
-        // --- INICJALIZACJA TRAWY (POINT GRASS) ---
+        // --- INICJALIZACJA TRAWY ---
         Vector3 centerPos = new Vector3((chunks * chunkSize) / 2f, 0, (chunks * chunkSize) / 2f);
         grassQueue.Sort((a, b) => Vector3.Distance(a.transform.position, centerPos).CompareTo(Vector3.Distance(b.transform.position, centerPos)));
 
         stopwatch = Time.realtimeSinceStartup;
-
         for (int i = 0; i < grassQueue.Count; i++)
         {
             if (grassQueue[i] != null)
@@ -202,22 +222,93 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
             if ((Time.realtimeSinceStartup - stopwatch) * 1000f > maxFrameTimeMs)
             {
+                // Aktualizacja paska (od 60% do 95%)
+                if (activeLoadingSlider != null)
+                {
+                    float progress = 0.6f + ((float)i / grassQueue.Count) * 0.35f;
+                    activeLoadingSlider.value = progress;
+                }
                 yield return null;
                 stopwatch = Time.realtimeSinceStartup;
             }
         }
 
-        // --- GENEROWANIE DRZEW (VEGETATION GENERATOR) ---
         SpawnGlobalVegetation();
-        yield return null;
+        StartCoroutine(GrassCullingRoutine());
+
+        // Pasek na 100%
+        if (activeLoadingSlider != null) activeLoadingSlider.value = 1.0f;
+        yield return new WaitForSeconds(0.2f); // Krótkie opóŸnienie
 
         // --- FINALIZACJA I TELEPORTACJA ---
         TeleportPlayerToCenter();
 
-        Debug.Log("Generowanie zakoñczone.");
+        // Usuwamy ekran ³adowania
+        if (activeLoadingScreen != null) Destroy(activeLoadingScreen);
 
-        // Wszystko gotowe, gracz na miejscu - dajemy znaæ innym skryptom (np. AnimalAI)
+        Debug.Log("Generowanie zakoñczone.");
         IsMapReady = true;
+    }
+
+    // --- FUNKCJA TELEPORTACJI (IGNORUJ¥CA WODÊ) ---
+    void TeleportPlayerToCenter()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null && NetworkClient.localPlayer != null)
+            player = NetworkClient.localPlayer.gameObject;
+
+        if (player == null)
+        {
+            Debug.LogError("B£¥D: Nie znaleziono gracza do teleportacji!");
+            return;
+        }
+
+        Debug.Log("Teleportacja gracza na twardy l¹d...");
+
+        Physics.SyncTransforms();
+
+        float centerX = (chunks * chunkSize) / 2f;
+        float centerZ = (chunks * chunkSize) / 2f;
+
+        Vector3 worldCenter = new Vector3(centerX, 200f, centerZ);
+        Vector3 safeSpawn = new Vector3(centerX, 60f, centerZ);
+        bool foundSpot = false;
+
+        for (int i = 0; i < 200; i++)
+        {
+            Vector2 randomCircle = Random.insideUnitCircle * (i * 4f);
+            Vector3 checkPos = worldCenter + new Vector3(randomCircle.x, 0, randomCircle.y);
+
+            RaycastHit[] hits = Physics.RaycastAll(checkPos, Vector3.down, 300f);
+
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.gameObject.name.Contains("Chunk"))
+                {
+                    if (hit.point.y > (waterLevel + 0.5f))
+                    {
+                        safeSpawn = hit.point + Vector3.up * 2f;
+                        foundSpot = true;
+                        goto SpotFound;
+                    }
+                }
+            }
+        }
+
+    SpotFound:
+
+        // Logika ostrze¿eñ
+        if (!foundSpot) Debug.LogWarning("Nie znaleziono miejsca. Teleportujê na domyœln¹.");
+
+        // Przenoszenie gracza
+        CharacterController cc = player.GetComponent<CharacterController>();
+        if (cc != null) cc.enabled = false; // Wy³¹czamy fizykê na moment przeniesienia
+
+        player.transform.position = safeSpawn;
+
+        if (cc != null) cc.enabled = true; // W³¹czamy fizykê z powrotem
+
+        // USUNIÊTO LINIE Z 'canControl', BO JU¯ JEJ NIE U¯YWAMY
     }
 
     void SpawnGlobalVegetation()
@@ -249,6 +340,8 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
     void GenerateSingleChunkTerrain(float[,] noiseMap, int cx, int cy, int worldMetricSize)
     {
+        if (terrainMaterial == null) return;
+
         float[,] borderedMap = ExtractChunkWithBorder(noiseMap, cx, cy);
         int width = borderedMap.GetLength(0);
         int height = borderedMap.GetLength(1);
@@ -274,11 +367,10 @@ public class ArchipelagoGenerator : NetworkBehaviour
         int uvOffsetX = cx * chunkSize;
         int uvOffsetY = cy * chunkSize;
 
-        // --- GENEROWANIE MESHA ---
         Mesh mesh = MeshGenerator.GenerateTerrainMesh(borderedMap, heightMultiplier, uvOffsetX, uvOffsetY, worldMetricSize);
         mesh.RecalculateBounds();
 
-        // --- OBLICZANIE GÊSTOŒCI TRAWY ---
+        // Kolorowanie trawy
         Vector3[] vertices = mesh.vertices;
         Vector3[] normals = mesh.normals;
         Color[] grassColors = new Color[vertices.Length];
@@ -291,11 +383,9 @@ public class ArchipelagoGenerator : NetworkBehaviour
         {
             float h = vertices[i].y;
             Vector3 normal = normals[i];
-
             float heightFactor = Mathf.InverseLerp(grassMinHeight, grassMinHeight + grassFadeRange, h);
             float slopeDot = Vector3.Dot(normal, Vector3.up);
             float slopeMask = Mathf.InverseLerp(slopeLimit - slopeBlur, slopeLimit + slopeBlur, slopeDot);
-
             float grassPresence = heightFactor * slopeMask;
             float wantedGrass = Mathf.Lerp(grassDensityEdge, grassDensityBase, grassPresence);
             float finalGrass = (grassPresence < 0.01f) ? 0.0f : (wantedGrass / maxGrassDensity);
@@ -308,9 +398,8 @@ public class ArchipelagoGenerator : NetworkBehaviour
 
         mesh.colors = grassColors;
         mf.sharedMesh = mesh;
-        mc.sharedMesh = mesh;
+        mc.sharedMesh = mesh; // Wa¿ne: Collider terenu!
 
-        // --- DODAWANIE KOMPONENTU TRAWY ---
         if (grassMaterial != null && chunkHasGrass)
         {
             AddPointGrass(chunk, grassClumpMesh, grassMaterial, maxGrassDensity, (cx * 100) + cy + seed);
@@ -340,41 +429,6 @@ public class ArchipelagoGenerator : NetworkBehaviour
         Vector3 boundsSize = new Vector3(chunkSize, heightMultiplier * 2f, chunkSize);
         pgr.boundingBoxOffset = new Bounds(boundsCenter, boundsSize);
         grassQueue.Add(pgr);
-    }
-
-    void TeleportPlayerToCenter()
-    {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null && NetworkClient.localPlayer != null) player = NetworkClient.localPlayer.gameObject;
-
-        if (player != null)
-        {
-            Vector3 worldCenter = new Vector3((chunks * chunkSize) / 2f, 100f, (chunks * chunkSize) / 2f);
-            Vector3 safeSpawn = Vector3.zero;
-            bool foundSpot = false;
-
-            for (int i = 0; i < 100; i++)
-            {
-                Vector2 randomCircle = Random.insideUnitCircle * (i * 5f);
-                Vector3 checkPos = worldCenter + new Vector3(randomCircle.x, 0, randomCircle.y);
-                if (Physics.Raycast(checkPos, Vector3.down, out RaycastHit hit, 200f))
-                {
-                    if (hit.point.y > (waterLevel + 1.5f) && hit.point.y < 50f)
-                    {
-                        safeSpawn = hit.point + Vector3.up * 2f;
-                        foundSpot = true;
-                        break;
-                    }
-                }
-            }
-
-            CharacterController cc = player.GetComponent<CharacterController>();
-            if (cc != null) cc.enabled = false;
-
-            player.transform.position = foundSpot ? safeSpawn : new Vector3(worldCenter.x, 50f, worldCenter.z);
-
-            if (cc != null) cc.enabled = true;
-        }
     }
 
     float[,] ExtractChunkWithBorder(float[,] map, int cx, int cy)

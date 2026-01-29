@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 64485b36a991ece4d9ae57b45dde5e1f
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 60072b568d64c40a485e0fc55012dc9f, type: 3}
+AssetOrigin:
+  serializedVersion: 1
+  productId: 305970
+  packageName: One Click Add Water -Stylized Water Shader
+  packageVersion: 1.0
+  assetPath: Assets/Houidisoft technology/One Click Add Water -Stylized Water Shader/shader/DepthFadegraph.shadersubgraph
+  uploadId: 724383
