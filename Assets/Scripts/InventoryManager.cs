@@ -1,27 +1,40 @@
 using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 
 public class InventoryManager : NetworkBehaviour
 {
+    [System.Serializable]
+    public class InventorySlot
+    {
+        public Item item;
+        public int count;
+    }
+
+    public List<InventorySlot> slots = new List<InventorySlot>();
     private GameObject inventoryPanel;
     private bool isInventoryOpen = false;
+    public InventoryUI uiDisplay;
 
     void Start()
     {
         if (!isLocalPlayer) return;
+        FindUI();
+    }
 
-        // Szukamy obiektu Inventory wewnątrz HUD
+    void FindUI()
+    {
+        // Szukanie HUD i panelu Inventory zgodnie z Twoją strukturą
         GameObject[] allObjects = Resources.FindObjectsOfTypeAll<GameObject>();
         foreach (GameObject obj in allObjects)
         {
             if (obj.CompareTag("HUD"))
             {
-                // Szukamy dziecka o nazwie Inventory
                 Transform inv = obj.transform.Find("Inventory");
-                if (inv != null) 
+                if (inv != null)
                 {
                     inventoryPanel = inv.gameObject;
-                    inventoryPanel.SetActive(false); // Ukryj na starcie
+                    inventoryPanel.SetActive(false);
                 }
                 break;
             }
@@ -38,6 +51,35 @@ public class InventoryManager : NetworkBehaviour
         }
     }
 
+    // Logika dodawania i stackowania przedmiotów
+
+    // 2. Zaktualizuj funkcję AddItem
+    public void AddItem(Item newItem)
+    {
+        if (newItem == null) return;
+
+        bool found = false;
+        foreach (var slot in slots)
+        {
+            if (slot.item == newItem)
+            {
+                slot.count++;
+                found = true;
+                break;
+            }
+        }
+
+        if (!found)
+        {
+            slots.Add(new InventorySlot { item = newItem, count = 1 });
+        }
+
+        // WYWOŁANIE ODŚWIEŻENIA
+        if (uiDisplay != null) uiDisplay.UpdateUI();
+
+        Debug.Log("Zebrano: " + newItem.itemName);
+    }
+
     void ToggleInventory()
     {
         if (inventoryPanel == null) return;
@@ -45,7 +87,7 @@ public class InventoryManager : NetworkBehaviour
         isInventoryOpen = !isInventoryOpen;
         inventoryPanel.SetActive(isInventoryOpen);
 
-        // Odblokowanie myszki, żeby można było klikać w sloty
+        // Zarządzanie kursorem myszy
         if (isInventoryOpen)
         {
             Cursor.visible = true;
