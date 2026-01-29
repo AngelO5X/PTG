@@ -172,7 +172,7 @@ MonoBehaviour:
   groundStickForce: -2
   cameraTransform: {fileID: 7330153968742193534}
   mouseSensitivity: 5
-  useVR: 1
+  useVR: 0
   vrCamera: {fileID: 0}
 --- !u!114 &3666145161120690753
 MonoBehaviour:
