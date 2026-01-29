@@ -12,8 +12,8 @@ public class PlayerController : NetworkBehaviour
     public float jumpForce = 7f;
 
     [Header("Under Water Jump")]
-    public float waterLevelY = 0f;          // poziom wody
-    public float waterJumpForce = 2.5f;     // S£ABSZY „SKOK” POD WOD¥
+    public float waterLevelY = 0f;
+    public float waterJumpForce = 2.5f;
     public float waterGravityMultiplier = 0.4f;
 
     [Header("Gravity")]
@@ -23,6 +23,10 @@ public class PlayerController : NetworkBehaviour
     [Header("Camera")]
     public Transform cameraTransform;
     public float mouseSensitivity = 2f;
+
+    [Header("VR")]
+    public bool useVR = false;          //  PRZE£¥CZNIK VR
+    public Transform vrCamera;          //  ta sama kamera (Tracked Pose Driver)
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -41,8 +45,11 @@ public class PlayerController : NetworkBehaviour
             return;
         }
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (!useVR)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     void Update()
@@ -57,6 +64,15 @@ public class PlayerController : NetworkBehaviour
     // ================= CAMERA =================
     void HandleCamera()
     {
+        if (useVR)
+            HandleVRCamera();
+        else
+            HandleMouseCamera();
+    }
+
+    // ======== MYSZ ========
+    void HandleMouseCamera()
+    {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
@@ -66,6 +82,27 @@ public class PlayerController : NetworkBehaviour
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * mouseX);
     }
+
+    // ======== VR (HEAD ONLY) ========
+    void HandleVRCamera()
+    {
+        if (vrCamera == null) return;
+
+        // kierunek patrzenia g³owy
+        Vector3 headForward = vrCamera.forward;
+
+        // rzut na p³aszczyznê poziom¹ (ignorujemy góra/dó³)
+        headForward.y = 0f;
+
+        if (headForward.sqrMagnitude < 0.0001f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(headForward);
+
+        // obracamy TYLKO cia³o (yaw)
+        transform.rotation = targetRotation;
+    }
+
 
     // ================= HORIZONTAL =================
     void HandleMovement()
@@ -84,12 +121,24 @@ public class PlayerController : NetworkBehaviour
 
         float speed = Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed;
 
+        // KIERUNKI WZGLÊDEM KAMERY (VR + NON-VR)
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        // obliczenia róchu
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+
         Vector3 move =
-            transform.right * smoothInput.x +
-            transform.forward * smoothInput.y;
+            forward * smoothInput.y +
+            right * smoothInput.x;
 
         controller.Move(move * speed * Time.deltaTime);
     }
+
 
     // ================= VERTICAL LOGIC =================
     void HandleVertical()
@@ -102,19 +151,19 @@ public class PlayerController : NetworkBehaviour
 
         velocity.y += currentGravity * Time.deltaTime;
 
-        // NORMALNY SKOK (nad wod¹)
+        // NORMALNY SKOK
         if (!underWater && controller.isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             velocity.y = jumpForce;
         }
 
-        // SKOK POD WOD¥ (bez ziemi, bez WASD)
+        // SKOK POD WOD¥ (bez pod³o¿a)
         if (underWater && Input.GetKey(KeyCode.Space))
         {
             velocity.y = waterJumpForce;
         }
 
-        // PRZYKLEJ DO ZIEMI (tylko nad wod¹)
+        // PRZYKLEJ DO ZIEMI
         if (!underWater && controller.isGrounded && velocity.y < 0)
             velocity.y = groundStickForce;
 
